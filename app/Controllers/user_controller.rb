@@ -1,5 +1,5 @@
-class UserController
-  def index
-    "Kullanıcı Kontroller İndex Sayfası"
+class UserController < ApplicationController
+  get '/user' do
+    "naber keko?"
   end
 end

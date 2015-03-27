@@ -1,25 +1,30 @@
+def load_controller(dir=File.dirname(__FILE__) + '/app/Controllers/*')
+  Dir.glob(dir).each do |file|
+    if File.directory? file then
+     load_controller(file+'/*')
+    else
+      require file
+    end
+  end
+end
+
+
+load_controller
+
+
 module MainApp
-
-  class FrontEnd < Sinatra::Base
-    #set views main folder
-    set :views, settings.root + '/app/Views/frontend'
-
-    get '/' do
-      require './app/Controllers/user_controller.rb'
-      UserController.index
-    end
-
+  def self.const_missing(c)
+    Object.const_get(c)
   end
-
-  class BackEnd < Sinatra::Base
-    #set views admin folder
-    set :views, settings.root + '/app/Views/backend'
-
-    get '/' do
-      erb :"login/index", :layout => :index
-    end
+end
 
 
-  end
+# Create New Controller Namespace Append Code:
 
+# module [ControllerFolderName]
+#   extend MainApp
+# end
+
+module Admin
+  extend MainApp
 end
