@@ -1,11 +1,12 @@
 require 'sinatra'
-require './app'
+#require './app'
 require File.join(File.dirname(__FILE__), 'app.rb')
 
 disable :run
 
 set :environment, :development
 
+#Main map link /
 map "/" do
   Dir.glob(File.dirname(__FILE__) + '/app/Controllers/*.rb').each do |file|
     x = file[(File.dirname(__FILE__) + '/app/Controllers/').length,file.length].chomp(".rb").split('_').map {|w| w.capitalize}.join
@@ -14,6 +15,7 @@ map "/" do
   run MainApp::ApplicationController
 end
 
+#Other link map
 Dir.glob(File.dirname(__FILE__) + '/app/Controllers/*').each do |file|
   if File.directory? file then
     folder = file[(File.dirname(__FILE__) + '/app/Controllers/').length,file.length]
