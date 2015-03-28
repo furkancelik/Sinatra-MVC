@@ -22,7 +22,3 @@ end
 # module [ControllerFolderName]
 #   extend MainApp
 # end
-
-module Admin
-  extend MainApp
-end
