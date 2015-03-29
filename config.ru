@@ -3,7 +3,7 @@ require 'sinatra'
 require File.join(File.dirname(__FILE__), 'app.rb')
 
 disable :run
-
+set :database_file, "config/database.yml"
 set :environment, :development
 
 #Main map link /

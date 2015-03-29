@@ -7,7 +7,10 @@ Dir.glob('./helpers/*.rb').each do |h_file|
 end
 
 #Controllers File Autoload
-load_controller(File.dirname(__FILE__) + '/app/Controllers/*')
+Sinatra::Helpers::load_controller(File.dirname(__FILE__) + '/app/Controllers/*')
+
+#Models File Autoload
+Sinatra::Helpers::load_models(File.dirname(__FILE__) + '/app/Models/*')
 
 
 module MainApp
